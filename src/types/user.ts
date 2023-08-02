@@ -2,7 +2,7 @@ export type LocalGithubUser = {
   login: string
   avatar: string
   name: string
-  company: string
+  company: string | null
   blog: string
   location: string
   bio: string

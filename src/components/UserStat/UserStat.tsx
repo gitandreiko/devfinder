@@ -12,12 +12,12 @@ export const UserStat = ({ repos, followers, following }: UserStatProps) => {
         <div className={cls.infoNumber}>{repos}</div>
       </div>
       <div className={cls.info}>
-        <div className={cls.infoTitle}>Following</div>
-        <div className={cls.infoNumber}>{following}</div>
+        <div className={cls.infoTitle}>Followers</div>
+        <div className={cls.infoNumber}>{followers}</div>
       </div>
       <div className={cls.info}>
-        <div className={cls.infoTitle}>Repos</div>
-        <div className={cls.infoNumber}>{followers}</div>
+        <div className={cls.infoTitle}>Following</div>
+        <div className={cls.infoNumber}>{following}</div>
       </div>
     </div>
   )
