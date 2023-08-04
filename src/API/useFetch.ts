@@ -7,31 +7,33 @@ import axios from 'axios'
 
 const BASE_URL = 'https://api.github.com/users/'
 
-// Custom hook for fetching user data
 export const useFetch = () => {
   const [user, setUser] = useState<LocalGithubUser | null>(defaultUser)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
   const fetchUser = async (username: string) => {
+    const url = BASE_URL + username
+
     setLoading(true)
     setError('')
 
-    try {
-      const url = BASE_URL + username
-      const response = await axios.get(url)
-      const user = response.data
+    setTimeout(async () => {
+      try {
+        const response = await axios.get<LocalGithubUser>(url)
+        const user = response.data
 
-      if (isGithubUser(user)) {
-        setUser(extractLocalUser(user))
-      } else {
-        setUser(null)
+        if (isGithubUser(user)) {
+          setUser(extractLocalUser(user))
+        } else {
+          setUser(null)
+        }
+      } catch (error) {
+        setError('User not found')
+      } finally {
+        setLoading(false)
       }
-    } catch (error) {
-      setError('User not found')
-    } finally {
-      setLoading(false)
-    }
+    }, 500)
   }
 
   return { user, loading, error, fetchUser }

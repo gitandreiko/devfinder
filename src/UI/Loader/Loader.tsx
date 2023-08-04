@@ -1,7 +1,17 @@
+import { Blocks } from 'react-loader-spinner'
 import cls from './Loader.module.scss'
 
-interface LoaderProps {}
-
-export const Loader = ({}: LoaderProps) => {
-  return <div className={cls.loader}>Loader Component</div>
+export const Loader = () => {
+  return (
+    <div className={cls.loader}>
+      <Blocks
+        visible={true}
+        height="120"
+        width="120"
+        ariaLabel="blocks-loading"
+        wrapperStyle={{}}
+        wrapperClass="blocks-wrapper"
+      />
+    </div>
+  )
 }
